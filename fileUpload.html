@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhotoFolio</title>
+  <script src="js/jquery-3.7.1.min.js"></script>
+  <style>
+    #output {
+      display: flex;
+    }
+    input {
+      border: 1px solid black;
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+  <h2>Choose your PhotoFolio files to upload</h2>
+  <form action="userP/@id">
+  <input id="file" type="file" name="file" multiple>
+  <output id="output"></output>
+  <input type="submit" value="제출" style="margin-top: 25px;">
+  </form>
+  <script>
+    const input = document.getElementById('file')
+    const output = document.getElementById('output')
+
+    document.getElementById('file').addEventListener('input', (event) => {
+      const files = event.target.files
+      output.textContent = Array.from(files).map(file => file.name).join('\n')
+})
+  </script>
+</body>
+</html>
