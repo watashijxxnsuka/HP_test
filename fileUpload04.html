@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>파일 업로드</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .upload-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .upload-container h2 {
+            margin-bottom: 20px;
+        }
+        .upload-container input[type="file"] {
+            display: none;
+        }
+        .upload-container label {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="upload-container">
+        <h2>파일 업로드</h2>
+        <form id="uploadForm">
+            <input type="file" id="fileInput" accept=".html,.css,.js" multiple>
+            <label for="fileInput">파일 선택</label>
+        </form>
+    </div>
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const files = event.target.files;
+            const validExtensions = ['html', 'css', 'js'];
+            let allValid = true;
+
+            for (const file of files) {
+                const fileExtension = file.name.split('.').pop().toLowerCase();
+                if (!validExtensions.includes(fileExtension)) {
+                    allValid = false;
+                    alert('유효하지 않은 파일 형식: ' + file.name);
+                    break;
+                }
+            }
+
+            if (allValid) {
+                alert('파일이 성공적으로 업로드 되었습니다.');
+                // 여기에서 파일 업로드 처리를 수행할 수 있습니다.
+            } else {
+                event.target.value = ''; // 입력 필드를 리셋합니다.
+            }
+        });
+    </script>
+</body>
+</html>
