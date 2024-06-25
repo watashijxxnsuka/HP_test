@@ -5,12 +5,16 @@ MPle는 포트폴리오와 랭킹을 나열하는 웹사이트 프로젝트입�
 ## 프로젝트 구조
 
 ├── css(test) <br>
-│ ├── Homepage01.css <br>
-│ ├── Mypage01.css <br>
+│ ├── fileUploadD1.css <br>
+│ ├── homePage01.css <br>
+│ ├── myPage02.css <br>
+│ ├── settings01.css <br>
 │ └── Ranking01.css <br>
-├── Mypage02.html <br>
-├── Ranking01.html <br>
 ├── fileUploadD1(darkMode).html <br>
+├── homePage01.html <br>
+├── myPage02.html <br>
+├── settings01.html <br>
+├── Ranking01.html <br>
 └── README.md
 
 ## 사용 방법
