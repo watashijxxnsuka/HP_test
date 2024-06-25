@@ -1,0 +1,170 @@
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #fafafa;
+  transition: background-color 0.3s, color 0.3s;
+}
+.navbar {
+  background-color: #fff;
+  border-bottom: 1px solid #dbdbdb;
+  z-index: 1030;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.navbar .navbar-brand {
+  margin-left: 10px;
+}
+.sidebar {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 250px;
+  height: calc(100vh - 60px);
+  padding-top: 20px;
+  background-color: #f8f9fa;
+  border-right: 1px solid #dbdbdb;
+  z-index: 1020;
+  overflow-y: auto;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.navbar-brand {
+  font-family: 'Brush Script MT', cursive;
+  font-size: 2rem;
+  color: #000;
+  margin: 0;
+  padding: 10px 20px;
+}
+.sidebar .nav-item {
+  margin-bottom: 20px;
+}
+.sidebar .nav-link {
+  color: #000;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+.sidebar a {
+  display: block;
+  padding: 10px 20px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+.sidebar a:hover {
+  background-color: #ddd;
+}
+.content {
+  margin-left: 250px;
+  margin-top: 60px;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+.profile-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+.profile-card img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+.profile-card h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+.profile-card h4 {
+  color: #666;
+  margin-bottom: 20px;
+}
+.profile-card p {
+  color: #333;
+}
+.profile-card .social-icons i {
+  font-size: 1.5rem;
+  margin: 0 10px;
+  color: #333;
+  transition: color 0.3s;
+}
+.profile-card .social-icons i:hover {
+  color: #007bff;
+}
+.portfolio-section {
+  margin-top: 40px;
+}
+.portfolio-item {
+  margin-bottom: 20px;
+}
+.portfolio-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+.portfolio-item img:hover {
+  transform: scale(1.05);
+}
+
+/* 다크 모드 스타일 */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+.dark-mode .navbar {
+  background-color: #1f1f1f;
+  border-color: #333;
+}
+.dark-mode .sidebar {
+  background-color: #1f1f1f;
+  border-color: #333;
+}
+.dark-mode .navbar-brand, 
+.dark-mode .nav-link, 
+.dark-mode .sidebar .nav-link, 
+.dark-mode .nav-link2 {
+  color: #e0e0e0;
+}
+.dark-mode .sidebar a {
+  color: #ccc;
+}
+.dark-mode .sidebar a:hover {
+  background-color: #333;
+}
+.dark-mode .profile-card {
+  background-color: #1f1f1f;
+  color: #e0e0e0;
+}
+.dark-mode .profile-card p {
+  color: #ccc;
+}
+.dark-mode .profile-card .social-icons i {
+  color: #ccc;
+}
+.dark-mode .portfolio-item img {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+.dark-mode .notification-dropdown {
+  background-color: #1f1f1f;
+  border-color: #333;
+}
+.dark-mode .notification-item {
+  border-color: #333;
+}
+.dark-mode .profile-icon {
+  background-color: #e0e0e0;
+}
+.dark-mode .modal-content {
+  background-color: #1f1f1f;
+  color: #e0e0e0;
+}
+.dark-mode .search-bar {
+  background-color: #1f1f1f;
+  border-color: #333;
+}
