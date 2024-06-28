@@ -51,7 +51,7 @@
                     <a class="nav-link" href="homepage02.html"><i class="fas fa-home" style="margin-top: 20px;"></i> 홈페이지</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" id="searchButton"><i class="fas fa-search" style="margin-top: 20px;"></i> 검색</a>
+                    <a class="nav-link" href="#" id="searchButtonToggle"><i class="fas fa-search" style="margin-top: 20px;"></i> 검색</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="fileUploadD1(darkMode).html" data-bs-toggle="modal" data-bs-target="#uploadModal"><i class="fas fa-upload" style="margin-top: 20px;"></i> 업로드</a>
@@ -68,6 +68,10 @@
         <div class="content">
             <h1 class="text-center">개인 포트폴리오</h1>
             <div class="portfolio-grid">
+                <div class="search-bar mb-4" id="searchBar">
+                    <input type="text" id="searchInput" class="form-control mb-3" placeholder="검색어를 입력하세요">
+                    <button type="button" id="searchButton" class="btn btn-primary btn-block">검색</button>
+                </div>
                 <div id="portfolioContainer" class="row">
                     <!-- 포트폴리오 항목이 여기 동적으로 추가됨 -->
                 </div>
@@ -144,12 +148,6 @@
         </div>
     </div>
 
-    <div class="search-bar" id="searchBar">
-        <h5>검색</h5>
-        <input type="text" class="form-control mb-3" placeholder="검색어를 입력하세요">
-        <button type="button" class="btn btn-primary btn-block">검색</button>
-    </div>
-
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -172,10 +170,10 @@
             }
         }
 
-        function loadPortfolios() {
-            var portfolioData = JSON.parse(localStorage.getItem('portfolioData') || '[]');
+        function loadPortfolios(filteredPortfolios) {
+            var portfolioData = filteredPortfolios || JSON.parse(localStorage.getItem('portfolioData') || '[]');
             var portfolioContainer = $('#portfolioContainer');
-            portfolioContainer.empty();  // 기존 항목을 비움
+            portfolioContainer.empty();
 
             portfolioData.forEach(function(portfolio, index) {
                 var portfolioItem = `
@@ -197,6 +195,8 @@
                 applyDarkMode(isDarkMode);
                 saveDarkModeState(isDarkMode);
             });
+
+
 
             $('#uploadForm').on('submit', function(e) {
                 e.preventDefault();
@@ -232,6 +232,8 @@
                 thumbnailReader.readAsDataURL($('#thumbnailImage')[0].files[0]);
             });
 
+
+
             $('#portfolioModal').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget);
                 var index = button.data('index');
@@ -243,6 +245,8 @@
                 modal.find('#portfolioDescriptionText').text(portfolio.portfolioDescription);
                 modal.find('#portfolioTagsText').text(portfolio.portfolioTags);
             });
+
+
 
             $('#notificationIcon').on('click', function(e) {
                 e.preventDefault();
@@ -264,11 +268,29 @@
                 reader.readAsDataURL(this.files[0]);
             });
 
-            $('#searchButton').on('click', function(e) {
+            $('#searchButtonToggle').on('click', function(e) {
                 e.preventDefault();
                 $('#searchBar').toggleClass('active');
             });
 
+            
+            // Search functionality
+            $('#searchButton').on('click', function() {
+                var searchTerm = $('#searchInput').val().toLowerCase();
+                var portfolioData = JSON.parse(localStorage.getItem('portfolioData') || '[]');
+                var filteredPortfolios = portfolioData.filter(function(portfolio) {
+                    return portfolio.portfolioDescription.toLowerCase().includes(searchTerm) || 
+                            portfolio.portfolioTags.toLowerCase().includes(searchTerm);
+                });
+
+                loadPortfolios(filteredPortfolios);
+
+            });
+
+
+
+
+            // Initial load
             loadPortfolios();
         });
     </script>
